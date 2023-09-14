@@ -7,3 +7,7 @@ My name is Haoran Dai, I study CS 673 in Boston University
 
 Member 3:
 My name is Bhargav Sai Gundapaneni, I am pursuing my master's in Software Development at Boston University.
+
+Member 4:
+My name is Xiaocheng Kang, I am a CS Data Analysis student in Boston University.
+
