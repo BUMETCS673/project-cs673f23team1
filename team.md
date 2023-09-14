@@ -9,5 +9,5 @@ Member 3:
 My name is Bhargav Sai Gundapaneni, I am pursuing my master's in Software Development at Boston University.
 
 Member 4:
-My name is Xiaocheng Kang, I am a CS Data Analysis student in Boston University.
+My name is Xiaocheng Kang, graduated from Miami University - Oxford, and I am a CS Data Analysis student in Boston University.
 
