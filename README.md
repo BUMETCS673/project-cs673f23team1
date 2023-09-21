@@ -87,7 +87,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## 📞 Contact 📞
 
 - **[Haoran Dai](mailto:kevdaup@bu.edu)** - Team Leader & Security Leader
-- **[Xiaocheng Kang](mailto:kangx@bu.edu)**
+- **[Xiaocheng Kang](mailto:kangx@bu.edu)** - Requirement & Configuration Leader
 - **[Qinchen Gu](mailto:qcgu@bu.edu)** - QA Leader
 - **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)** - Implemtation Leader
 - **[Your Name](mailto:your.email@example.com)**
