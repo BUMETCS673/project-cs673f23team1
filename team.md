@@ -13,3 +13,6 @@ My name is Xiaocheng Kang, graduated from Miami University - Oxford, and I am a 
 
 Member 5:
 My name is Qinchen Gu, I am trying to get my master degree in Boston University and now I am studying CS 673 course.
+
+Member 6: 
+My name is Yibo Wang. I am pursuing my MS degree in computer science. Looking forward to working with you guys. 
