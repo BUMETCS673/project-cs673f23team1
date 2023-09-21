@@ -9,4 +9,4 @@ Member 3:
 My name is Bhargav Sai Gundapaneni, I am pursuing my master's in Software Development at Boston University.
 
 Member 4:
-My name is YIbo Wang. I am a MS student in computer science. I was mechanical engineering major. I am looking forward to working with you guys. 
+My name is Yibo Wang. I am a MS student in computer science. I was mechanical engineering major. I am looking forward to working with you guys. 
