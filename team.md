@@ -8,5 +8,5 @@ My name is Haoran Dai, I study CS 673 in Boston University
 Member 3:
 My name is Bhargav Sai Gundapaneni, I am pursuing my master's in Software Development at Boston University.
 
-Member 4:
+Member 6:
 My name is Yibo Wang. I am a MS student in computer science. I was mechanical engineering major. I am looking forward to working with you guys. 
