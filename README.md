@@ -91,4 +91,3 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 - **[Qinchen Gu](mailto:qcgu@bu.edu)**
 - **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)**
 - **[Your Name](mailto:your.email@example.com)**
-- **[Your Name](mailto:your.email@example.com)**
