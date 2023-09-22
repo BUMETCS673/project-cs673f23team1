@@ -1,4 +1,4 @@
-<h1 align="center">🚀 Group Project: [Your Project Name] 🚀</h1> <p align="center">   <img src="https://img.shields.io/badge/Spring%20Boot-v2.5.5-brightgreen" />   <img src="https://img.shields.io/badge/React-v17.0.2-blue" />   <img src="https://img.shields.io/badge/license-MIT-green" /> </p> <p align="center">   <a href="#overview">Overview</a> •   <a href="#tech-stack">Tech Stack</a> •   <a href="#getting-started">Getting Started</a> •   <a href="#usage">Usage</a> •   <a href="#contributing">Contributing</a> •   <a href="#license">License</a> •   <a href="#contact">Contact</a> </p>
+<h1 align="center">🚀 Group Project: TerrierShopping 🚀</h1> <p align="center">   <img src="https://img.shields.io/badge/Spring%20Boot-v2.5.5-brightgreen" />   <img src="https://img.shields.io/badge/React-v17.0.2-blue" />   <img src="https://img.shields.io/badge/license-MIT-green" /> </p> <p align="center">   <a href="#overview">Overview</a> •   <a href="#tech-stack">Tech Stack</a> •   <a href="#getting-started">Getting Started</a> •   <a href="#usage">Usage</a> •   <a href="#contributing">Contributing</a> •   <a href="#license">License</a> •   <a href="#contact">Contact</a> </p>
 
 ## 🌟 Overview 🌟
 
@@ -86,9 +86,8 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## 📞 Contact 📞
 
-- **[Haoran Dai](mailto:kevdaup@bu.edu)**
-- **[Xiaocheng Kang](mailto:kangx@bu.edu)**
-- **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)**
-- **[Your Name](mailto:your.email@example.com)**
-- **[Your Name](mailto:your.email@example.com)**
+- **[Haoran Dai](mailto:kevdaup@bu.edu)** - Team Leader & Security Leader
+- **[Xiaocheng Kang](mailto:kangx@bu.edu)** - Requirement & Configuration Leader
+- **[Qinchen Gu](mailto:qcgu@bu.edu)** - QA Leader
+- **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)** - Implemtation Leader
 - **[Your Name](mailto:your.email@example.com)**
