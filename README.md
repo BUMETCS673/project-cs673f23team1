@@ -89,6 +89,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 - **[Haoran Dai](mailto:kevdaup@bu.edu)** - Team Leader & Security Leader
 - **[Xiaocheng Kang](mailto:kangx@bu.edu)** - Requirement & Configuration Leader
 - **[Qinchen Gu](mailto:qcgu@bu.edu)** - QA Leader
-- **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)** - Implemtation Leader
-- **[Huanzhou Wang](mailto:huanzhou@bu.edu)**
+- **[Bhargav Gundapaneni](mailto:saibharg@bu.edu)** - Implementation Leader
+- **[Huanzhou Wang](mailto:huanzhou@bu.edu)** - Design Leader
   
