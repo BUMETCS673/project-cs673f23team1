@@ -4,9 +4,7 @@ My name is Huanzhou Wang, I study Software Development in Boston University
 Member 2:
 My name is Haoran Dai, I study Software Engineering in Boston University
 
-
-Member 3:
-My name is Bhargav Sai Gundapaneni, I am pursuing my master's in Software Development at Boston University.
+Member 3: Hey there! Name's Bhargav Sai Gundapaneni, and guess what? I’m on a wild adventure, diving into the wacky world of Software Development for my Master's at none other than the legendary Boston University! Buckle up, it’s going to be a code-tastic ride!"
 
 Member 4:
 My name is Xiaocheng Kang, graduated from Miami University - Oxford, and I am a CS Data Analysis student in Boston University.
