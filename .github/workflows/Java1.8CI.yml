@@ -16,23 +16,21 @@ jobs:
         java-version: 8
         distribution: 'adopt'
 
-    - name: Check Java Version
+    - name: Check Java Version in Java Files
       run: |
-        # Get the Java version
-        java -version
+        # Find all .java files in the repository
+        java_files=$(find . -name "*.java")
 
-        # Check if the Java version contains "1.8" (Java 8)
-        if [[ $(java -version 2>&1) == *"1.8"* ]]; then
-          echo "Java version is 1.8 (Java 8)"
-        else
-          echo "Java version is not 1.8 (Java 8)"
-          exit 1
-        fi
-    - name: Test Java Files
-      run: |
-        # Compile and test all .java files in the repository
-        for file in $(find . -name "*.java"); do
-          javac $file
-          # You can add more test commands here
+        for file in $java_files; do
+          # Try to compile each .java file
+          javac $file 2>/dev/null
+
+          # Check the exit code of javac
+          if [ $? -eq 0 ]; then
+            echo "File $file uses Java 8"
+          else
+            echo "File $file uses a different Java version"
+            exit 1  # Exit with an error status to prevent the commit
+          fi
         done
       
