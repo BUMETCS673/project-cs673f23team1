@@ -1,8 +1,9 @@
 name: Node Version
 on: [push, pull_request]
 jobs:
-    runs-on:ubuntu-latest
-    steps:
-    - uses: actions/checkou@v2
-    - run:
-        node -v
+    check-node-version:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkou@v2
+        - run:
+            node -v
