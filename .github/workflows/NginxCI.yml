@@ -9,7 +9,7 @@ jobs:
       ports:
       - 8080:80
   steps:
-   - uses: actions/checkou@v2
+   - uses: actions/checkout@v2
    - run:
        node -v
        curl localhost:8080
