@@ -28,3 +28,11 @@ jobs:
           echo "Java version is not 1.8 (Java 8)"
           exit 1
         fi
+    - name: Test Java Files
+      run: |
+        # Compile and test all .java files in the repository
+        for file in $(find . -name "*.java"); do
+          javac $file
+          # You can add more test commands here
+        done
+      
