@@ -1,6 +1,6 @@
 name: NginxCI
 name: Node Version
-on: [push]
+on: [push, pull_request]
 jobs:
   runs-on: ubuntu-latest
   services:
