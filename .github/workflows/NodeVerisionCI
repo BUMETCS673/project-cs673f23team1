@@ -1,5 +1,5 @@
 name: Node Version
-on: [push]
+on: [push, pull_request]
 jobs:
   jobs1:
     runs-on:ubuntu-latest
