@@ -8,7 +8,7 @@ This project aims to [describe the purpose of the project here]. It's a robust, 
 
 🌐 Backend: Spring Boot
 
-🎨 Frontend: React
+🎨 Frontend: Vue
 
 💽 Database: [Your Database]
 
