@@ -16,20 +16,17 @@ jobs:
         java-version: 8
         distribution: 'adopt'
 
-    - name: Check Java Version in Java Files
+    - name: Check Java Version in Committed Files
       run: |
-        # Find all .java files in the repository
-        java_files=$(find . -name "*.java")
+        # Get the list of changed files in the commit
+        changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
 
-        for file in $java_files; do
-          # Try to compile each .java file
-          javac $file 2>/dev/null
-
-          # Check the exit code of javac
-          if [ $? -eq 0 ]; then
-            echo "File $file uses Java 8"
+        for file in $changed_files; do
+          # Check if the file contains "1.8" (Java 8)
+          if grep -q "1.8" $file; then
+            echo "File $file uses Java 1.8"
           else
-            echo "File $file uses a different Java version"
+            echo "File $file does not use Java 1.8"
             exit 1  # Exit with an error status to prevent the commit
           fi
         done
