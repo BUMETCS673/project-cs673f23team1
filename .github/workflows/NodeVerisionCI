@@ -1,0 +1,9 @@
+name: Node Version
+on: [push]
+jobs:
+  jobs1:
+    runs-on:ubuntu-latest
+    steps:
+    - uses: actions/checkou@v2
+    - run:
+        node -v
