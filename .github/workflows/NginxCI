@@ -1,0 +1,16 @@
+name: NginxCI
+name: Node Version
+on: [push]
+jobs:
+  jobs1:
+    runs-on:ubuntu-latest
+    services:
+      nginx:
+        image: nginx
+        ports:
+          - 8080:80
+    steps:
+    - uses: actions/checkou@v2
+    - run:
+        node -v
+        curl localhost:8080
