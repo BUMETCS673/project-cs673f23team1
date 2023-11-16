@@ -3,23 +3,28 @@ package com.aceteam.tm.common.enums;
 import lombok.Getter;
 
 /**
- * @description:
+ * @description: some desc
  * @author: haoran
  */
-
 @Getter
-public class DynamicTypeEnum {
-    // Write a post
-//    writeArticle("Write A Post"),
-//    likeComment("Like"),
-//    commentArticle("Comment"),
-//    commentReply("Reply The Comment"),
-//    followUser("Follow The User");
+public enum DynamicTypeEnum {
+    /**
+     * Write Articles
+     */
+    writeArticles("Write Articles"),
+    likeArticles("Like Articles"),
+    likeComments("Like Comments"),
+    commentArticles("Comment Articles"),
+    commentReply("Comment Reply"),
+    followUser("Follow User");
 
-
+    /**
+     * Description
+     */
     private String desc;
 
     DynamicTypeEnum(String name) {
         this.desc = name;
     }
-    }
+
+}
