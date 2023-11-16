@@ -3,4 +3,5 @@ package com.aceteam.tm.post.facade.dto;/**
  * @author: haoran
  */
 public class SlideshowDTO {
+
 }
