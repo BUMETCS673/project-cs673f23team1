@@ -22,7 +22,7 @@
 
         <!-- 本工程各模块依赖 -->
         <dependency>
-            <groupId>com.liang</groupId>
+            <groupId>com.acetam</groupId>
             <artifactId>bbs-common</artifactId>
         </dependency>
         <dependency>
