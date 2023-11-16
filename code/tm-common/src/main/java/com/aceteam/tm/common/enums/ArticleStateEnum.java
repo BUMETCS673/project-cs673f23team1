@@ -3,24 +3,26 @@ package com.aceteam.tm.common.enums;
 import lombok.Getter;
 
 /**
- * @description: some desc
+ * @description:
  * @author: haoran
  */
-
-
 @Getter
-public class ArticleStateEnum {
+public enum ArticleStateEnum {
     /**
-     * Under Reviewing
+     * Under review
      */
+    pendingReview(0, "Under review"),
+    disabled(1, "Disabled"),
+    enable(2, "Enable");
 
-//    pendingReview(-1, "Reviewing"),
-//    disabled(0, "Disabled"),
-//    enable(1, "Enabled");
-
-
+    /**
+     * Points
+     */
     private Integer code;
 
+    /**
+     * Description
+     */
     private String desc;
 
     ArticleStateEnum(Integer code, String name) {

@@ -4,23 +4,27 @@
     <parent>
         <groupId>com.aceteam</groupId>
         <artifactId>tm-bbs</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>tm-common</artifactId>
     <packaging>pom</packaging>
     <name>tm-common Maven Webapp</name>
     <url>http://maven.apache.org</url>
-    <modules>
-        <module>tm-post-facade</module>
-        <module>tm-post-persistence</module>
-        <module>tm-post-service</module>
-    </modules>
+
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
     <build>
