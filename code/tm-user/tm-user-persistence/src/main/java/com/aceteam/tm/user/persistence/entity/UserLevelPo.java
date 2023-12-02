@@ -1,6 +1,8 @@
-package com.acteam.tm.user.facade.dto;
+package com.aceteam.tm.user.persistence.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,30 +11,32 @@ import java.time.LocalDateTime;
  * @description: some desc
  * @author: haoran
  */
-public class LikeDTO implements Serializable{
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserLevelPo implements Serializable {
     /**
-     * like id
+     * User level number
      */
     private Integer id;
 
     /**
-     * article id
+     * User id
      */
-    private Integer articleId;
+    private Long userId;
 
     /**
-     * state(0 cancel, 1 like)
+     * Level (Lv6)
      */
-    private Boolean state;
+    private String level;
 
     /**
-     * like user id
+     * Points
      */
-    private Long likeUser;
+    private Integer points;
 
     /**
-     * create time
+     * Creation time
      */
     private LocalDateTime createTime;
 
@@ -42,5 +46,4 @@ public class LikeDTO implements Serializable{
     private LocalDateTime updateTime;
 
     private static final long serialVersionUID = 1L;
-
 }

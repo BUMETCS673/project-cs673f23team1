@@ -1,15 +1,27 @@
 package com.acteam.tm.user.facade.dto;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * @description: some desc
  * @author: haoran
  */
-public class FollowCountDTO implements Serializable {
+@Data
+public class UserOperateCountDTO implements Serializable {
+    /**
+     * Number of posts
+     */
+    private Long postCount;
 
     /**
-     * Number of followings
+     * Number of likes
+     */
+    private Long likeCount;
+
+    /**
+     * Number of followers
      */
     private Long followCount;
 
@@ -19,4 +31,5 @@ public class FollowCountDTO implements Serializable {
     private Long fanCount;
 
     private static final long serialVersionUID = 1L;
+
 }

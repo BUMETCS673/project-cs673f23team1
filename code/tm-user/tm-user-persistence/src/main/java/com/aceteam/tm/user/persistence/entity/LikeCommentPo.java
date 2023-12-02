@@ -1,38 +1,42 @@
-package com.acteam.tm.user.facade.dto;
+package com.aceteam.tm.user.persistence.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @description: some desc
  * @author: haoran
  */
-public class LikeDTO implements Serializable{
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class LikeCommentPo {
     /**
-     * like id
+     * Comment Likes Number
      */
     private Integer id;
 
     /**
-     * article id
+     * Comment id
      */
-    private Integer articleId;
+    private Integer commentId;
 
     /**
-     * state(0 cancel, 1 like)
+     * Status (0 Canceled,1 Liked)
      */
     private Boolean state;
 
     /**
-     * like user id
+     * Comment Likes user id
      */
     private Long likeUser;
 
     /**
-     * create time
+     * Creation time
      */
     private LocalDateTime createTime;
 
@@ -42,5 +46,4 @@ public class LikeDTO implements Serializable{
     private LocalDateTime updateTime;
 
     private static final long serialVersionUID = 1L;
-
 }
