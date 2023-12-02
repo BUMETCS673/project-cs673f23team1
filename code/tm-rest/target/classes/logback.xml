@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!--Define the storage address of the log file Do not use relative paths in the LogBack configuration. -->
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
     <property name="LOG_HOME" value="/home/service/var/logs"/>
-    <!--Project name -->
+    <!--项目名称 -->
     <property name="PRO_NAME" value="bbs-rest"/>
-    <!-- Console Output -->
+    <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <!--Formatted output: %d indicates the date, %thread indicates the thread name, %-5level: the level displays 5 character widths from the left %msg: the log message, %n is a newline character -->
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level %logger{50} [%thread] -%msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Generate log files on a daily basis -->
+    <!-- 按照每天生成日志文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/${PRO_NAME}/${PRO_NAME}-info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- File name for log file output -->
+            <!--日志文件输出的文件名 -->
             <FileNamePattern>${LOG_HOME}/${PRO_NAME}/${PRO_NAME}-%d{yyyyMMdd}.%i.log</FileNamePattern>
             <MaxHistory>100</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -28,7 +28,7 @@
         </encoder>
     </appender>
 
-    <!-- Generate exception logs on a daily basis -->
+    <!-- 按照每天生成异常日志 -->
     <appender name="errorFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -46,29 +46,29 @@
         </layout>
     </appender>
 
-    <!-- Define log file asynchronous output -->
+    <!-- 定义日志文件异步输出 -->
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <!-- No logs are lost. By default, TRACT, DEBUG, INFO level logs are discarded if the queue is 80% full. -->
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
         <discardingThreshold>0</discardingThreshold>
-        <!-- Change the default queue depth, which affects performance. The default value is 256 -->
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
         <queueSize>512</queueSize>
-        <!-- Add additional appenders, only one at most. -->
+        <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref="FILE"/>
     </appender>
 
-    <!-- Defining Exception Log File Asynchronous Output  -->
+    <!-- 定义异常日志文件异步输出  -->
     <appender class="ch.qos.logback.classic.AsyncAppender" name="ERROR_ASYNC">
-        <!-- No logs are lost. By default, TRACT, DEBUG, INFO level logs are discarded if the queue is 80% full. -->
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
         <discardingThreshold>0</discardingThreshold>
-        <!-- Change the default queue depth, which affects performance. The default value is 256 -->
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
         <queueSize>512</queueSize>
-        <!-- Add additional appenders, only one at most. -->
+        <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref="errorFileAppender"/>
     </appender>
 
-    <!-- Specifies the logging level for a package in the project when a logging operation is performed. -->
-    <!-- The rank order is [from highest to lowest]：FATAL > ERROR > WARN > INFO > DEBUG > TRACE (Anything higher than the assigned LEVEL can be printed) -->
-    <!-- additivity=false(default true) Indicates that after the match, it will not be passed on to other loggers.-->
+    <!-- 指定项目中某个包，当有日志操作行为时的日志记录级别 -->
+    <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE (比所配level高的都可以打印) -->
+    <!-- additivity=false(默认true) 表示匹配之后，不再继续传递给其他的logger-->
     <logger name="java.sql" level="ERROR" additivity="false">
         <appender-ref ref="FILE"/>
     </logger>
@@ -81,10 +81,10 @@
 
     <logger name="org.springframework.web" level="INFO"/>
 
-    <!-- Troubleshooting logs that don't need to be printed (dubbo remote exceptions) -->
+    <!-- 排除不需要打印的日志（dubbo远程异常） -->
     <logger name="org.apache.dubbo.remoting" level="OFF"/>
 
-    <!-- Log output level ERROR,WARN,INFO,DEBUG -->
+    <!-- 日志输出级别 ERROR,WARN,INFO,DEBUG -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="ASYNC"/>
