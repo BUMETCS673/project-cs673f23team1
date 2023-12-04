@@ -14,17 +14,16 @@
     <version>${revision}</version>
 
     <dependencies>
-        <!-- 本工程各模块依赖 -->
         <dependency>
-            <groupId>com.liang</groupId>
-            <artifactId>bbs-article-facade</artifactId>
+            <groupId>com.aceteam</groupId>
+            <artifactId>bbs-post-facade</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.liang</groupId>
-            <artifactId>bbs-article-persistence</artifactId>
+            <groupId>com.aceteam</groupId>
+            <artifactId>bbs-post-persistence</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.liang</groupId>
+            <groupId>com.aceteam</groupId>
             <artifactId>bbs-user-facade</artifactId>
         </dependency>
 
