@@ -9,10 +9,19 @@ import java.io.Serializable;
  * @author: haoran
  */
 @Data
-public class FollowCountDTO implements Serializable {
+public class UserOperateCountDTO implements Serializable {
+    /**
+     * Number of posts
+     */
+    private Long postCount;
 
     /**
-     * Number of followings
+     * Number of likes
+     */
+    private Long likeCount;
+
+    /**
+     * Number of followers
      */
     private Long followCount;
 
@@ -22,4 +31,5 @@ public class FollowCountDTO implements Serializable {
     private Long fanCount;
 
     private static final long serialVersionUID = 1L;
+
 }

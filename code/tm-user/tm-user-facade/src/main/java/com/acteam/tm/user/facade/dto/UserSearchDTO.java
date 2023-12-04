@@ -9,17 +9,18 @@ import java.io.Serializable;
  * @author: haoran
  */
 @Data
-public class FollowCountDTO implements Serializable {
+public class UserSearchDTO implements Serializable {
 
     /**
-     * Number of followings
+     * Current page
      */
-    private Long followCount;
+    private Integer currentPage;
 
     /**
-     * Number of fans
+     * Number of items per page
      */
-    private Long fanCount;
+    private Integer pageSize;
 
     private static final long serialVersionUID = 1L;
+
 }
