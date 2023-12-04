@@ -12,7 +12,7 @@ spring:
     # mysql用户名（需要改成你自己的）
     username: root
     # mysql密码（需要改成你自己的）
-    password: admin123
+    password: 777888
     # 下面为连接池的补充设置，应用到上面所有数据源中
     druid:
       # 初始化大小
