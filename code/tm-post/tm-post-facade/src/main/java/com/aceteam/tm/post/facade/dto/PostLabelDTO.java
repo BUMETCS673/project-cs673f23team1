@@ -1,5 +1,7 @@
 package com.aceteam.tm.post.facade.dto;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -8,6 +10,7 @@ import java.time.LocalDateTime;
  * @description: some desc
  * @author: haoran
  */
+@Data
 public class PostLabelDTO implements Serializable {
     /**
      * Post label number

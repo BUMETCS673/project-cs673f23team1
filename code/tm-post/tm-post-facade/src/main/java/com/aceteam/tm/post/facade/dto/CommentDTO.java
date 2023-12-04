@@ -10,6 +10,8 @@ import java.util.List;
  * @description: some desc
  * @author: haoran
  */
+
+@Data
 public class CommentDTO implements Serializable {
     /**
      * Comment id

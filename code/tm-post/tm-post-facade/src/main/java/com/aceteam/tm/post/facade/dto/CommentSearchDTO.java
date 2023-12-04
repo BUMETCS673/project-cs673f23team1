@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @description: some desc
  * @author: haoran
  */
+@Data
 public class CommentSearchDTO implements Serializable {
     /**
      * Comment ID

@@ -7,6 +7,7 @@ import java.util.List;
  * @description: some desc
  * @author: haoran
  */
+@Data
 public class PostSearchDTO implements Serializable{
     /**
      * Post ID

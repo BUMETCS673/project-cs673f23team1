@@ -21,7 +21,6 @@
         <dependency>
             <groupId>com.aceteam</groupId>
             <artifactId>tm-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.aceteam</groupId>
@@ -60,6 +59,34 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.maliangnansheng</groupId>
+            <artifactId>nansheng-common</artifactId>
+            <version>3.3.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aceteam</groupId>
+            <artifactId>tm-common</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aceteam</groupId>
+            <artifactId>tm-common</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aceteam</groupId>
+            <artifactId>tm-common</artifactId>
+            <version>Unknown</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

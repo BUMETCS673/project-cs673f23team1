@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
  * @description: some desc
  * @author: haoran
  */
+@Data
 public class ResourceNavigateDTO implements Serializable{
     /**
      * Resource id
