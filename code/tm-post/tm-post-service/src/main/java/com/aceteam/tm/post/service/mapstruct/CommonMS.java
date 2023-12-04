@@ -1,5 +1,7 @@
 package com.aceteam.tm.post.service.mapstruct;
 
+import com.github.pagehelper.PageInfo;
+
 import java.util.List;
 
 /**

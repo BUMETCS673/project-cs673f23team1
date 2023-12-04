@@ -1,5 +1,32 @@
 package com.aceteam.tm.post.service.impl;
 
+import com.aceteam.tm.common.enums.SortRuleEnum;
+import com.aceteam.tm.post.facade.dto.CommentDTO;
+import com.aceteam.tm.post.facade.dto.CommentSearchDTO;
+import com.aceteam.tm.post.facade.server.CommentService;
+import com.aceteam.tm.post.persistence.entity.CommentPo;
+import com.aceteam.tm.post.persistence.entity.CommentPoExample;
+import com.aceteam.tm.post.persistence.mapper.CommentPoExMapper;
+import com.aceteam.tm.post.persistence.mapper.CommentPoMapper;
+import com.aceteam.tm.post.service.mapstruct.CommentMS;
+import com.aceteam.tm.post.service.utils.CommentTreeUtils;
+import com.acteam.tm.user.facade.dto.UserLevelDTO;
+import com.acteam.tm.user.facade.server.LikeCommentService;
+import com.acteam.tm.user.facade.server.UserLevelService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.liang.manage.auth.facade.dto.user.UserDTO;
+import com.liang.manage.auth.facade.server.UserService;
+import com.liang.nansheng.common.auth.UserSsoDTO;
+import com.liang.nansheng.common.enums.ResponseCode;
+import com.liang.nansheng.common.web.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,7 +68,7 @@ public class CommentServiceImpl implements CommentService {
      * @return
      */
     @Override
-    public List<CommentDTO> getCommentByPostId(CommentSearchDTO commentSearchDTO, UserSsoDTO currentUser) {
+    public List<CommentDTO> getCommentByArticleId(CommentSearchDTO commentSearchDTO, UserSsoDTO currentUser) {
         CommentPoExample example = new CommentPoExample();
         example.createCriteria().andIsDeletedEqualTo(false)
                 .andStateEqualTo(true)
@@ -53,7 +80,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         commentDTOS = CommentTreeUtils.toTree(commentDTOS);
-        // Hottest comments (in descending order of number of likes, then number of replies)
+        // Sort by number of likes and number of responses
         if (SortRuleEnum.hottest.equals(commentSearchDTO.getSortRule())) {
             commentDTOS = commentDTOS.stream()
                     .sorted(Comparator.comparing(CommentDTO::getLikeCount, Comparator.nullsLast(Comparator.reverseOrder()))
@@ -149,7 +176,7 @@ public class CommentServiceImpl implements CommentService {
         commentDTO.setCreateTime(now);
         commentDTO.setUpdateTime(now);
         if (commentPoMapper.insertSelective(CommentMS.INSTANCE.toPo(commentDTO)) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "添加评论失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to add comment");
         }
 
         return true;
@@ -165,7 +192,7 @@ public class CommentServiceImpl implements CommentService {
     public Boolean delete(Integer commentId) {
         List<Integer> commentIds = new ArrayList<>();
         List<CommentDTO> children = new ArrayList<>();
-        // 通过父级ID获取子级评论信息
+        // Get child comment information by parent ID
         this.getAllChildrenByPreId(children, commentId);
         if (CollectionUtils.isNotEmpty(children)) {
             commentIds.addAll(children.stream().map(CommentDTO::getId).collect(Collectors.toList()));
@@ -178,7 +205,7 @@ public class CommentServiceImpl implements CommentService {
         commentPo.setIsDeleted(true);
         commentPo.setUpdateTime(LocalDateTime.now());
         if (commentPoMapper.updateByExampleSelective(commentPo, example) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "删除评论失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to delete comment");
         }
         return true;
     }
@@ -186,7 +213,7 @@ public class CommentServiceImpl implements CommentService {
     /**
      * Get child comment information by parent ID
      *
-     * @param result 存放结果
+     * @param result
      * @param preId
      * @return
      */
