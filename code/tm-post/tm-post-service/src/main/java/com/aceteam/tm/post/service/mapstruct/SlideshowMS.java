@@ -1,10 +1,15 @@
 package com.aceteam.tm.post.service.mapstruct;
 
+import com.aceteam.tm.post.facade.dto.SlideshowDTO;
+import com.aceteam.tm.post.persistence.entity.SlideshowPo;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
 /**
  * @description: some desc
  * @author: haoran
  */
 @Mapper(componentModel = "spring")
-public interface ResourceNavigateMS extends CommonMS<ResourceNavigatePo, ResourceNavigateDTO> {
-    ResourceNavigateMS INSTANCE = Mappers.getMapper(ResourceNavigateMS.class);
+public interface SlideshowMS extends CommonMS<SlideshowPo, SlideshowDTO> {
+    SlideshowMS INSTANCE = Mappers.getMapper(SlideshowMS.class);
 }

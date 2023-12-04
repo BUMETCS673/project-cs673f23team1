@@ -4,27 +4,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.liang</groupId>
-        <artifactId>bbs-article</artifactId>
+        <groupId>com.aceteam</groupId>
+        <artifactId>tm-post</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>bbs-article-service</artifactId>
+    <artifactId>tm-post-service</artifactId>
     <version>${revision}</version>
 
     <dependencies>
         <dependency>
             <groupId>com.aceteam</groupId>
-            <artifactId>bbs-post-facade</artifactId>
+            <artifactId>tm-post-facade</artifactId>
         </dependency>
         <dependency>
             <groupId>com.aceteam</groupId>
-            <artifactId>bbs-post-persistence</artifactId>
+            <artifactId>tm-post-persistence</artifactId>
         </dependency>
         <dependency>
             <groupId>com.aceteam</groupId>
-            <artifactId>bbs-user-facade</artifactId>
+            <artifactId>tm-user-facade</artifactId>
         </dependency>
 
 
@@ -153,44 +153,6 @@
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.7.5</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.aceteam</groupId>
-            <artifactId>tm-post-facade</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.aceteam</groupId>
-            <artifactId>tm-post-facade</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
 
     </dependencies>
 
@@ -218,10 +180,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,5 +1,49 @@
 package com.aceteam.tm.post.service.impl;
 
+import cn.hutool.poi.excel.ExcelReader;
+import cn.hutool.poi.excel.ExcelUtil;
+import com.aceteam.tm.common.enums.PostStateEnum;
+import com.aceteam.tm.post.facade.dto.*;
+import com.aceteam.tm.post.facade.server.CommentService;
+import com.aceteam.tm.post.facade.server.LabelService;
+import com.aceteam.tm.post.facade.server.PostLabelService;
+import com.aceteam.tm.post.facade.server.PostService;
+import com.aceteam.tm.post.persistence.entity.PostPo;
+import com.aceteam.tm.post.persistence.entity.PostPoExample;
+import com.aceteam.tm.post.persistence.mapper.PostPoExMapper;
+import com.aceteam.tm.post.persistence.mapper.PostPoMapper;
+import com.aceteam.tm.post.service.mapstruct.PostMS;
+import com.acteam.tm.user.facade.dto.FollowDTO;
+import com.acteam.tm.user.facade.dto.LikeDTO;
+import com.acteam.tm.user.facade.dto.LikeSearchDTO;
+import com.acteam.tm.user.facade.dto.UserLevelDTO;
+import com.acteam.tm.user.facade.server.FollowService;
+import com.acteam.tm.user.facade.server.LikeService;
+import com.acteam.tm.user.facade.server.UserLevelService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.liang.manage.auth.facade.dto.user.UserDTO;
+import com.liang.manage.auth.facade.server.FileService;
+import com.liang.manage.auth.facade.server.UserService;
+import com.liang.manage.concern.facade.server.VisitService;
+import com.liang.nansheng.common.auth.UserSsoDTO;
+import com.liang.nansheng.common.enums.ResponseCode;
+import com.liang.nansheng.common.utils.CommonUtils;
+import com.liang.nansheng.common.web.exception.BusinessException;
+import com.liang.nansheng.common.enums.ImageTypeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +55,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 @Service
-public class PostServiceImpl implements PostService{
+public class PostServiceImpl implements PostService {
     @Autowired
     private PostPoMapper postPoMapper;
 
@@ -78,12 +122,12 @@ public class PostServiceImpl implements PostService{
     public PageInfo<PostDTO> getList(PostSearchDTO postSearchDTO, UserSsoDTO currentUser, PostStateEnum postStateEnum) {
         List<Integer> postIds = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(postSearchDTO.getLabelIds())) {
-            // Get tag information based on tag id collection
+            // Get the post id collection through the tag id collection
             List<PostLabelDTO> postLabelDTOS = postLabelService.getByLabelIds(postSearchDTO.getLabelIds());
             if (CollectionUtils.isNotEmpty(postLabelDTOS)) {
                 postIds = postLabelDTOS.stream().map(PostLabelDTO::getPostId).collect(Collectors.toList());
             } else {
-                // No post of this tag
+                // 该标签下没有文章
                 return new PageInfo<>(new ArrayList<>());
             }
         }
@@ -181,7 +225,7 @@ public class PostServiceImpl implements PostService{
         }
 
         if (postPoMapper.updateByPrimaryKeySelective(postPo) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "修改文章审批状态失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to modify post approval status");
         }
 
         return true;
@@ -212,7 +256,7 @@ public class PostServiceImpl implements PostService{
     }
 
     /**
-     * Get post information from article id collection
+     * Get post information from post id collection
      *
      * @param ids
      * @param isPv        Whether to increase the number of post views
@@ -279,7 +323,7 @@ public class PostServiceImpl implements PostService{
     @Override
     public Boolean create(PostDTO postDTO, List<Integer> labelIds, UserSsoDTO currentUser) {
         if (StringUtils.isBlank(postDTO.getTitle()) || StringUtils.isBlank(postDTO.getHtml())) {
-            throw BusinessException.build(ResponseCode.NOT_EXISTS, "参数不合规");
+            throw BusinessException.build(ResponseCode.NOT_EXISTS, "Parameter non-compliance");
         }
         postDTO.setIsDeleted(false);
         String content = CommonUtils.html2Text(postDTO.getHtml());
@@ -314,12 +358,12 @@ public class PostServiceImpl implements PostService{
     @Override
     public Boolean update(PostDTO postDTO, List<Integer> labelIds, UserSsoDTO currentUser) {
         if (StringUtils.isBlank(postDTO.getTitle()) || StringUtils.isBlank(postDTO.getHtml())) {
-            throw BusinessException.build(ResponseCode.NOT_EXISTS, "参数不合规");
+            throw BusinessException.build(ResponseCode.NOT_EXISTS, "Parameter non-compliance");
         }
         PostPo oldPostPo = postPoMapper.selectByPrimaryKey(postDTO.getId());
         // Only update your own posts
         if (!currentUser.getUserId().equals(oldPostPo.getCreateUser())) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "无法更新，只能更新自己撰写的文章！");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "It cannot be updated, only posts that you have written yourself!");
         }
 
         String content = CommonUtils.html2Text(postDTO.getHtml());
@@ -330,7 +374,7 @@ public class PostServiceImpl implements PostService{
         postDTO.setState(PostStateEnum.pendingReview.getCode());
         PostPo postPo = PostMS.INSTANCE.toPo(postDTO);
         if (postPoMapper.updateByPrimaryKeySelective(postPo) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "更新文章失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to update post");
         }
         // Update file tag relationship information
         postLabelService.update(labelIds, postPo.getId(), currentUser);
@@ -399,11 +443,11 @@ public class PostServiceImpl implements PostService{
     @Override
     public String uploadPicture(byte[] bytes, String sourceFileName) {
         // File upload (scaled compression)
-        return fileService.fileScaleUpload(bytes, sourceFileName, ImageTypeEnum.postPicture.name());
+        return fileService.fileScaleUpload(bytes, sourceFileName, ImageTypeEnum.postTitleMap.name());
     }
 
     /**
-     * Get the total number of article comment visits
+     * Get the total number of post comment visits
      *
      * @return
      */
@@ -454,7 +498,7 @@ public class PostServiceImpl implements PostService{
         PostCountDTO postCountDTO = new PostCountDTO();
         // Get the number of post likes
         postCountDTO.setLikeCount(likeService.getLikeCountPost(Collections.singletonList(id)));
-        // Whether or not it has been liked, get followers via fromUser and toUser
+        // Whether it has been liked, get followers via fromUser and toUser
         if (currentUser != null) {
             postCountDTO.setIsLike(likeService.isLike(id, currentUser.getUserId()));
             FollowDTO followDTO = followService.getByFromToUser(currentUser.getUserId(), postPo.getCreateUser(), false);
@@ -545,7 +589,7 @@ public class PostServiceImpl implements PostService{
     @Override
     public Boolean delete(Integer id, UserSsoDTO currentUser) {
         PostPo postPo = postPoMapper.selectByPrimaryKey(id);
-        // 只能删除自己的文章
+        // Can only delete your own posts
         if (!currentUser.getUserId().equals(postPo.getCreateUser())) {
             throw BusinessException.build(ResponseCode.OPERATE_FAIL, "It can't be deleted, only posts that you have written!");
         }

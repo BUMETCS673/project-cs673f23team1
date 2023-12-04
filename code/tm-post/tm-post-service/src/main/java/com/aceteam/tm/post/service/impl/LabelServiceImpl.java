@@ -1,5 +1,27 @@
 package com.aceteam.tm.post.service.impl;
 
+import com.aceteam.tm.post.facade.dto.LabelDTO;
+import com.aceteam.tm.post.facade.dto.LabelSearchDTO;
+import com.aceteam.tm.post.facade.server.LabelService;
+import com.aceteam.tm.post.facade.server.PostLabelService;
+import com.aceteam.tm.post.persistence.entity.LabelPo;
+import com.aceteam.tm.post.persistence.entity.LabelPoExample;
+import com.aceteam.tm.post.persistence.mapper.LabelPoMapper;
+import com.aceteam.tm.post.service.mapstruct.LabelMS;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.liang.manage.auth.facade.server.FileService;
+import com.liang.nansheng.common.auth.UserSsoDTO;
+import com.liang.nansheng.common.enums.ImageTypeEnum;
+import com.liang.nansheng.common.enums.ResponseCode;
+import com.liang.nansheng.common.web.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,7 +32,7 @@ import java.util.List;
 @Slf4j
 @Component
 @Service
-public class LabelServiceImpl implements LabelService{
+public class LabelServiceImpl implements LabelService {
     @Autowired
     private LabelPoMapper labelPoMapper;
 
@@ -70,10 +92,10 @@ public class LabelServiceImpl implements LabelService{
     @Override
     public Boolean create(LabelDTO labelDTO, UserSsoDTO currentUser) {
         if (StringUtils.isBlank(labelDTO.getLabelName())) {
-            throw BusinessException.build(ResponseCode.NOT_EXISTS, "参数不合规");
+            throw BusinessException.build(ResponseCode.NOT_EXISTS, "Parameter non-compliance");
         }
         if (isNameExist(null, labelDTO.getLabelName())) {
-            throw BusinessException.build(ResponseCode.NAME_EXIST, "标签名重复");
+            throw BusinessException.build(ResponseCode.NAME_EXIST, "Duplicate tag names");
         }
 
         labelDTO.setIsDeleted(false);
@@ -84,7 +106,7 @@ public class LabelServiceImpl implements LabelService{
         labelDTO.setUpdateTime(now);
         LabelPo labelPo = LabelMS.INSTANCE.toPo(labelDTO);
         if (labelPoMapper.insertSelective(labelPo) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "新增标签失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to add new label");
         }
 
         return true;

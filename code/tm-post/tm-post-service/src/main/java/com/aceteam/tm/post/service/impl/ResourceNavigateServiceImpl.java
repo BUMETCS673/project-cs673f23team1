@@ -1,5 +1,27 @@
 package com.aceteam.tm.post.service.impl;
 
+import com.aceteam.tm.post.facade.dto.ResourceNavigateDTO;
+import com.aceteam.tm.post.facade.dto.ResourceNavigateSearchDTO;
+import com.aceteam.tm.post.facade.server.ResourceNavigateService;
+import com.aceteam.tm.post.persistence.entity.ResourceNavigatePo;
+import com.aceteam.tm.post.persistence.entity.ResourceNavigatePoExample;
+import com.aceteam.tm.post.persistence.mapper.ReourceNavigatePoMapper;
+import com.aceteam.tm.post.service.mapstruct.ResourceNavigateMS;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.liang.manage.auth.facade.server.FileService;
+import com.liang.nansheng.common.auth.UserSsoDTO;
+import com.liang.nansheng.common.enums.ResponseCode;
+import com.liang.nansheng.common.web.exception.BusinessException;
+import com.liang.nansheng.common.enums.ImageTypeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +36,7 @@ import java.util.stream.Collectors;
 @Service
 public class ResourceNavigateServiceImpl implements ResourceNavigateService {
     @Autowired
-    private ResourceNavigatePoMapper resourceNavigatePoMapper;
+    private ReourceNavigatePoMapper resourceNavigatePoMapper;
 
     @Reference
     private FileService fileService;
@@ -51,10 +73,10 @@ public class ResourceNavigateServiceImpl implements ResourceNavigateService {
                 StringUtils.isBlank(resourceNavigateDTO.getCategory()) ||
                 StringUtils.isBlank(resourceNavigateDTO.getDesc()) ||
                 StringUtils.isBlank(resourceNavigateDTO.getLink())) {
-            throw BusinessException.build(ResponseCode.NOT_EXISTS, "参数不合规");
+            throw BusinessException.build(ResponseCode.NOT_EXISTS, "Parameter non-compliance");
         }
         if (isNameExist(null, resourceNavigateDTO.getResourceName())) {
-            throw BusinessException.build(ResponseCode.NAME_EXIST, "资源导航名重复");
+            throw BusinessException.build(ResponseCode.NAME_EXIST, "Duplicate resource navigation names");
         }
 
         resourceNavigateDTO.setIsDeleted(false);
@@ -65,7 +87,7 @@ public class ResourceNavigateServiceImpl implements ResourceNavigateService {
         resourceNavigateDTO.setUpdateTime(now);
         ResourceNavigatePo resourceNavigatePo = ResourceNavigateMS.INSTANCE.toPo(resourceNavigateDTO);
         if (resourceNavigatePoMapper.insertSelective(resourceNavigatePo) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "新增资源导航失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Added resource navigation failures");
         }
 
         return true;
@@ -114,7 +136,7 @@ public class ResourceNavigateServiceImpl implements ResourceNavigateService {
         resourceNavigateDTO.setUpdateTime(LocalDateTime.now());
         ResourceNavigatePo resourceNavigatePo = ResourceNavigateMS.INSTANCE.toPo(resourceNavigateDTO);
         if (resourceNavigatePoMapper.updateByPrimaryKeySelective(resourceNavigatePo) <= 0) {
-            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "更新资源导航失败");
+            throw BusinessException.build(ResponseCode.OPERATE_FAIL, "Failed to update resource navigation");
         }
 
         return true;

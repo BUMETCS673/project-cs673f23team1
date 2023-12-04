@@ -1,6 +1,15 @@
 package com.aceteam.tm.post.service.impl;
 
+import com.aceteam.tm.post.facade.dto.PostLabelDTO;
+import com.aceteam.tm.post.facade.server.PostLabelService;
+import com.aceteam.tm.post.persistence.entity.PostLabelPo;
+import com.aceteam.tm.post.persistence.entity.PostLabelPoExample;
+import com.aceteam.tm.post.persistence.mapper.PostLabelPoExMapper;
+import com.aceteam.tm.post.persistence.mapper.PostLabelPoMapper;
+import com.aceteam.tm.post.service.mapstruct.PostLabelMS;
+import com.liang.nansheng.common.auth.UserSsoDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +27,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 @Service
-public class PostLabelServiceImpl implements PostLabelService{
+public class PostLabelServiceImpl implements PostLabelService {
     @Autowired
     private PostLabelPoMapper postLabelPoMapper;
 
