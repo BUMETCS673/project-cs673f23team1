@@ -27,6 +27,6 @@ public interface PostPoExMapper {
      * @return
      */
     @MapKey("id")
-    List<Map<String, Object>> selectArticleCheckCount(@Param("title") String title);
+    List<Map<String, Object>> selectPostCheckCount(@Param("title") String title);
 
 }

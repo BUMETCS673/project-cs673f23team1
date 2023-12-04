@@ -33,7 +33,7 @@ public class CommentPo implements Serializable {
     /**
      * Commented post id
      */
-    private Integer articleId;
+    private Integer postId;
 
     /**
      * Status (0 Disabled, 1 Enabled)

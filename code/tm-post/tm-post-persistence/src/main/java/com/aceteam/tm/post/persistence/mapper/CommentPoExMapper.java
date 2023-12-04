@@ -21,16 +21,16 @@ public interface CommentPoExMapper {
     List<CommentPo> selectLatestComments(String content, Long commentUser);
 
     /**
-     * Get information about comments on all moderated articles
+     * Get information about comments on all moderated posts
      *
      * @param startTime
      * @param endTime
      * @return
      */
-    List<CommentPo> getAllArticleComment(@Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime);
+    List<CommentPo> getAllPostComment(@Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime);
 
     /**
-     * Get information about all comment replies on reviewed articles
+     * Get information about all comment replies on reviewed posts
      *
      * @param startTime
      * @param endTime
