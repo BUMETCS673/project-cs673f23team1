@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ResourceNavigateService {
     /**
-     * 获取资源导航
+     * Access to resources navigation
      *
      * @param resourceNavigateSearchDTO
      * @return
@@ -21,7 +21,7 @@ public interface ResourceNavigateService {
     PageInfo<ResourceNavigateDTO> getList(ResourceNavigateSearchDTO resourceNavigateSearchDTO);
 
     /**
-     * 新增资源导航
+     * Added resource navigation
      *
      * @param resourceNavigateDTO
      * @param currentUser
@@ -30,7 +30,7 @@ public interface ResourceNavigateService {
     Boolean create(ResourceNavigateDTO resourceNavigateDTO, UserSsoDTO currentUser);
 
     /**
-     * 上传资源导航logo
+     * Upload Resources Navigation logo
      *
      * @param bytes
      * @param sourceFileName
@@ -39,7 +39,7 @@ public interface ResourceNavigateService {
     String uploadResourceNavigateLogo(byte[] bytes, String sourceFileName);
 
     /**
-     * 更新资源导航
+     * Updated resource navigation
      *
      * @param resourceNavigateDTO
      * @param currentUser
@@ -48,7 +48,7 @@ public interface ResourceNavigateService {
     Boolean update(ResourceNavigateDTO resourceNavigateDTO, UserSsoDTO currentUser);
 
     /**
-     * 删除资源导航
+     * Delete resource navigation
      *
      * @param id
      * @return
@@ -56,7 +56,7 @@ public interface ResourceNavigateService {
     Boolean delete(Integer id);
 
     /**
-     * 获取资源导航所有类别
+     * Get resource navigation for all categories
      *
      * @return
      */

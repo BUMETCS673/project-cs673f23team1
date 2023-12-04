@@ -31,7 +31,7 @@ public class CommentDTO implements Serializable {
     /**
      * commented post id
      */
-    private Integer articleId;
+    private Integer postId;
 
     /**
      * Status(0 disabled, 1 enabled)

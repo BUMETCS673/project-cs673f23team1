@@ -1,5 +1,6 @@
 package com.aceteam.tm.post.facade.server;
 
+import com.aceteam.tm.common.enums.PostStateEnum;
 import com.aceteam.tm.post.facade.dto.*;
 import com.aceteam.tm.post.facade.dto.PostDTO;
 import com.acteam.tm.user.facade.dto.LikeSearchDTO;
