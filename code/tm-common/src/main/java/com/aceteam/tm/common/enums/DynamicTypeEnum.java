@@ -9,12 +9,12 @@ import lombok.Getter;
 @Getter
 public enum DynamicTypeEnum {
     /**
-     * Write Articles
+     * Write Posts
      */
-    writeArticles("Write Articles"),
-    likeArticles("Like Articles"),
-    likeComments("Like Comments"),
-    commentArticles("Comment Articles"),
+    writePost("Write Post"),
+    likePost("Like Post"),
+    likeComment("Like Comment"),
+    commentPost("Comment Post"),
     commentReply("Comment Reply"),
     followUser("Follow User");
 
