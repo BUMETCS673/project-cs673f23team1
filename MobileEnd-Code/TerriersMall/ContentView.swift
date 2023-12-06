@@ -88,6 +88,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                
                 .padding()
                 .navigationBarItems(leading:
                                         HStack{
@@ -119,11 +120,11 @@ struct ContentView: View {
                 })
                 .navigationTitle("Terriers Mall")
                 .foregroundColor(.red)
-                .scrollIndicators(.hidden)
                 .background(Color("GrayColor"))
             }
             
         }
+        .scrollIndicators(.hidden)
         .accentColor(.red)
     }
     
