@@ -74,8 +74,8 @@ struct PostPage: View {
                     .padding()
                 
                 Button(action: {
-                    // Implement the update logic here
-                    print("Update button tapped")
+                    ContentView.displayItems.append(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, imageURL:URL(string: "https://images.manning.com/book/e/59c8b18-b8fd-4d32-939b-25dcbb4d525d/Rocca-ADS-HI.png")!))
+                    
                 }) {
                     Text("Post")
                         .frame(minWidth: 0, maxWidth: .infinity)
