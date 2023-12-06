@@ -107,6 +107,8 @@ public class PostDTO implements Serializable {
      */
     private LocalDateTime createTime;
 
+    private LocalDateTime updateTime;
+
     private static final long serialVersionUID = 1L;
 
 

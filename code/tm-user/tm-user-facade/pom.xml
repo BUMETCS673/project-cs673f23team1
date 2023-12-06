@@ -4,21 +4,47 @@
     <parent>
         <groupId>com.aceteam</groupId>
         <artifactId>tm-user</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>tm-user-facade</artifactId>
-    <packaging>war</packaging>
-    <name>tm-user-facade Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <version>${revision}</version>
+
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>io.github.maliangnansheng</groupId>
+            <artifactId>nansheng-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aceteam</groupId>
+            <artifactId>tm-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- pagehelper分页-start -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- pagehelper分页-end -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>tm-user-facade</finalName>
-    </build>
+
 </project>

@@ -1,5 +1,7 @@
 package com.aceteam.tm.post.facade.dto;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +9,7 @@ import java.io.Serializable;
  * @author: haoran
  */
 
-
+@Data
 public class PostReadDTO implements Serializable {
 
     /**

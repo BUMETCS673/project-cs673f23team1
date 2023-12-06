@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 /**
- * @description: Dataset: fs_article_label
+ * @description: Dataset: fs_post_label
  * @author: haoran
  */
 
@@ -25,7 +25,7 @@ public class PostLabelPo implements Serializable {
     /**
      * Post ID
      */
-    private Integer articleId;
+    private Integer postId;
 
     /**
      * Label ID
@@ -35,7 +35,7 @@ public class PostLabelPo implements Serializable {
     /**
      * 0 is normal, 1 is deleted
      */
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
     /**
      * Create User ID

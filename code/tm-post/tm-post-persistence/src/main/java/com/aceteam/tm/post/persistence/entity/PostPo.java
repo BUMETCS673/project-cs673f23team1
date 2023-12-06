@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @description: some desc
@@ -16,55 +17,66 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostPo implements Serializable {
-/**
-     * Post ID
+
+     /**
+     * Post id
      */
     private Integer id;
 
     /**
-     * Post Title
+     * title map
+     */
+    private String titleMap;
+
+    /**
+     * post title
      */
     private String title;
 
     /**
-     * Post Content
+     * post content
      */
     private String content;
 
     /**
-     * Post Author
+     * Status (-1 pending review, 0 disabled, 1 enabled)
      */
-    private String author;
+    private Integer state;
 
     /**
-     * Post Label
+     * Post Views
      */
-    private String label;
+    private Integer pv;
 
     /**
-     * 0 is normal, 1 is deleted
+     * Top (the higher the number, the higher the top)
      */
-    private boolean isDeleted;
+    private Integer top;
 
     /**
-     * Create User ID
+     * Logical deletion (0 normal, 1 deleted)
+     */
+    private Boolean isDeleted;
+
+    /**
+     * Create user id
      */
     private Long createUser;
 
     /**
-     * Update User ID
+     * Update user id
      */
     private Long updateUser;
 
     /**
-     * Creation Time
+     * Creation time
      */
-    private String createTime;
+    private LocalDateTime createTime;
 
     /**
-     * Update Time
+     * update time
      */
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     private static final long serialVersionUID = 1L;
 }

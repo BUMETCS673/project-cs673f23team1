@@ -1,15 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.aceteam</groupId>
         <artifactId>tm-post</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>tm-post-facade</artifactId>
-    <packaging>war</packaging>
-    <name>tm-post-facade Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <version>${revision}</version>
+
     <dependencies>
         <!-- Nansheng Series Public Dependency -->
         <dependency>
@@ -21,12 +24,10 @@
         <dependency>
             <groupId>com.aceteam</groupId>
             <artifactId>tm-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.aceteam</groupId>
             <artifactId>tm-user-facade</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
 
@@ -62,7 +63,5 @@
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>tm-post-facade</finalName>
-    </build>
+
 </project>
