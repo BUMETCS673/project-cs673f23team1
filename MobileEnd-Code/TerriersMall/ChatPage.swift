@@ -17,7 +17,8 @@ struct ChatPage: View {
     @State private var messages: [Message] = [
         Message(text: "Is it available?", isSentByCurrentUser: true),
         Message(text: "Yes!", isSentByCurrentUser: false),
-        Message(text: "Can you do 250?", isSentByCurrentUser: true)
+        Message(text: "Can you do 250?", isSentByCurrentUser: true),
+        Message(text: "No way!!!", isSentByCurrentUser: false)
         // Add more messages here
     ]
     @State private var messageText: String = ""

@@ -6,76 +6,89 @@
 //
 
 import SwiftUI
+import SwiftData
 
-
-struct Listing: Identifiable {
-    let id = UUID()
-    let imageName: String
-    let title: String
-    let price: String
-    let status: String
-    let listedDate: String
-}
 
 struct ListingDetailView: View {
-    var listing: Listing = Listing(
-        imageName: "dyson.airpurifier",
-        title: "Dyson BP03 Air Purifier",
-        price: "$700",
-        status: "Available",
-        listedDate: "Listed on 10/12"
-    )
+
     
-    @State private var isSold: Bool = false
+    @Environment(\.modelContext) private var modelContext
+    @Query private var items: [Item]
+    
 
     var body: some View {
-            List{
-                VStack {
-                    Image(systemName: listing.imageName) // Replace with your image resource name
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 200)
-                        .padding()
-                    
-                    Text(listing.title)
-                        .font(.title2)
-                        .padding([.top, .leading, .trailing])
-                    
-                    HStack {
-                        Text(listing.price)
-                            .font(.headline)
-                        Spacer()
-                        Text(isSold ? "Sold" : listing.status)
-                        Spacer()
-                        Text(listing.listedDate)
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                    .padding()
-                    
-                    HStack {
+        List{
+            
+            ForEach(items) { item in
+                if item.sentByUser {
+                    VStack {
                         
                         
-                        Button(isSold ? "Sold on \(Date().formatted(.dateTime.day().month().year()))" : "Mark as sold") {
-                            markAsSold()
+                        if item.selectedImageData != nil {
+                            Image(uiImage: UIImage(data: item.selectedImageData!)!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 200)
+                                .padding()
+                        } else{
+                            AsyncImage(url: item.imageURL)
+                            { image in
+                                image
+                                    .image?
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 200)
+                                    .padding()
+                            }
+
                         }
-                        .fontWeight(.bold)
+                        
+
+                        
+                        Text(item.name)
+                            .font(.title2)
+                            .padding([.top, .leading, .trailing])
+                        
+                        HStack {
+                            Text("$\(item.price)")
+                                .font(.headline)
+                            Spacer()
+                            Text(item.isSold ? "Sold" : "Available")
+                            Spacer()
+                            Text(item.timestamp.formatted(.dateTime))
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
                         .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(isSold ? Color.green : Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                        
+                        HStack {
+                            
+                            
+                            Button(item.isSold ? "Sold on \(Date().formatted(.dateTime.day().month().year()))" : "Mark as sold") {
+                                markAsSold(item: item)
+                            }
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(item.isSold ? Color.green : Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        }
+                        .padding()
+                        
+                        Spacer()
                     }
-                    .padding()
                     
-                    Spacer()
                 }
+                
+                
+            }
+            
         }
-        
     }
     
-    func markAsSold() {
-        isSold = true
+    func markAsSold(item: Item) {
+        item.isSold = true
     }
 }
 

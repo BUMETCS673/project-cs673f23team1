@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftData
 
 struct PostPage: View {
     @State private var itemName: String = ""
@@ -14,7 +15,11 @@ struct PostPage: View {
     @State private var itemDescription: String = ""
     @State private var selectedPhotoItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
-
+    
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @Query private var items: [Item]
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -72,10 +77,10 @@ struct PostPage: View {
                     .keyboardType(.decimalPad)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                
+                 
                 Button(action: {
-//                    ContentView.displayItems.append(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, imageURL:URL(string: "https://images.manning.com/book/e/59c8b18-b8fd-4d32-939b-25dcbb4d525d/Rocca-ADS-HI.png")!, sentByUser: false))
-                    
+                    modelContext.insert(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, sentByUser: true, selectedImageData: selectedImageData))
+                    dismiss()
                 }) {
                     Text("Post")
                         .frame(minWidth: 0, maxWidth: .infinity)

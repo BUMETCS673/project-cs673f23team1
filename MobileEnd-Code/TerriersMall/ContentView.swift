@@ -60,9 +60,8 @@ struct ContentView: View {
                             }
                         } label: {
                             VStack{
-                                AsyncImage(url: item.imageURL) { image in
-                                    image
-                                        .image?
+                                if item.selectedImageData != nil {
+                                    Image(uiImage: UIImage(data: item.selectedImageData!)!)
                                         .resizable()
                                         .clipped()
                                         .frame(width: 200, height: 200)
@@ -75,6 +74,26 @@ struct ContentView: View {
                                                 .position(x:38,y:170)
                                         })
                                 }
+                                    AsyncImage(url: item.imageURL) { image in
+                                            image
+                                                .image?
+                                                .resizable()
+                                                .clipped()
+                                                .frame(width: 200, height: 200)
+                                                .overlay(content: {
+                                                    Text("$\(item.price)")
+                                                        .fontWeight(.bold)
+                                                        .padding(8)
+                                                        .background(.regularMaterial)
+                                                        .cornerRadius(25)
+                                                        .position(x:38,y:170)
+                                                })
+                                        }
+                                
+
+                                
+
+
                                 HStack{
                                     Text(item.name)
                                         .fontWeight(.semibold)
@@ -133,9 +152,9 @@ struct ContentView: View {
     
     func addSamples() {
         modelContext.insert(Item(timestamp: Date(), name: "Used iPhone 14", price: 300, imageURL: URL(string: "https://apollo-singapore.akamaized.net/v1/files/0x9ciuzhgt44-IN/image;s=360x0")!, sentByUser: true))
-        modelContext.insert(Item(timestamp: Date(), name: "Algorithms Book", price: 10, imageURL: URL(string: "https://m.media-amazon.com/images/I/61Pgdn8Ys-L._AC_UF1000,1000_QL80_.jpg")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "Algorithms Book", price: 10, imageURL: URL(string: "https://m.media-amazon.com/images/I/61Pgdn8Ys-L._AC_UF1000,1000_QL80_.jpg")!, sentByUser: true))
         modelContext.insert(Item(timestamp: Date(), name: "Data Structure Book", price: 17, imageURL: URL(string: "https://covers.openlibrary.org/b/id/12678211-L.jpg")!, sentByUser: false))
-        modelContext.insert(Item(timestamp: Date(), name: "Hermen Miller Aeron", price: 499, imageURL: URL(string: "https://marathonbe.com/wp-content/uploads/2023/03/Black-Aeron-1.jpg")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "Hermen Miller Aeron", price: 499, imageURL: URL(string: "https://hips.hearstapps.com/hmg-prod/images/hm-1644256971.jpeg?crop=1.00xw:0.669xh;0,0.247xh&resize=640:*")!, sentByUser: false))
         modelContext.insert(Item(timestamp: Date(), name: "IKEA DESK", price: 120, imageURL: URL(string: "https://media.karousell.com/media/photos/products/2022/8/11/ikea_norden_table_1660183841_1e0802c0_thumbnail")!, sentByUser: false))
         modelContext.insert(Item(timestamp: Date(), name: "David Yurman Ring", price: 400, imageURL: URL(string: "https://i.ebayimg.com/images/g/D~4AAOSwHZVgx6m8/s-l1200.webp")!, sentByUser: false))
     }
