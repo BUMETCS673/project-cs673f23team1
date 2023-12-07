@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
 
 struct Listing: Identifiable {
     let id = UUID()
