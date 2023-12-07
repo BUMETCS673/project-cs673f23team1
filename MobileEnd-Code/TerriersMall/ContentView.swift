@@ -23,7 +23,7 @@ struct ContentView: View {
         NavigationView{
             ScrollView {
                 LazyVGrid(columns: columns){
-                    ForEach(ContentView.displayItems) { item in
+                    ForEach(items) { item in
                         NavigationLink {
                             VStack{
                                 Text("UserID: Huanzhou Wang")
@@ -84,7 +84,7 @@ struct ContentView: View {
                             .background(.white)
                             .cornerRadius(8)
                             .padding(.horizontal)
-
+                            
                         }
                     }
                 }
@@ -110,7 +110,7 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "tag.fill")
                     }
-
+                    
                     NavigationLink {
                         PostPage()
                     } label: {
@@ -126,16 +126,22 @@ struct ContentView: View {
         }
         .scrollIndicators(.hidden)
         .accentColor(.red)
+        .onAppear {
+            addSamples()
+        }
     }
     
-    static var displayItems: [Item] =
-    [Item(timestamp: Date(), name: "Used iPhone 14", price: 300, imageURL: URL(string: "https://apollo-singapore.akamaized.net/v1/files/0x9ciuzhgt44-IN/image;s=360x0")!),
-     Item(timestamp: Date(), name: "Algorithms Book", price: 10, imageURL: URL(string: "https://m.media-amazon.com/images/I/61Pgdn8Ys-L._AC_UF1000,1000_QL80_.jpg")!),
-     Item(timestamp: Date(), name: "Data Structure Book", price: 17, imageURL: URL(string: "https://images.manning.com/book/e/59c8b18-b8fd-4d32-939b-25dcbb4d525d/Rocca-ADS-HI.png")!),
-     Item(timestamp: Date(), name: "Hermen Miller Aeron", price: 499, imageURL: URL(string: "https://marathonbe.com/wp-content/uploads/2023/03/Black-Aeron-1.jpg")!),
-     Item(timestamp: Date(), name: "IKEA DESK", price: 120, imageURL: URL(string: "https://media.karousell.com/media/photos/products/2022/8/11/ikea_norden_table_1660183841_1e0802c0_thumbnail")!),
-     Item(timestamp: Date(), name: "David Yurman Ring", price: 400, imageURL: URL(string: "https://i.ebayimg.com/images/g/D~4AAOSwHZVgx6m8/s-l1200.webp")!)
-    ]
+    func addSamples() {
+        modelContext.insert(Item(timestamp: Date(), name: "Used iPhone 14", price: 300, imageURL: URL(string: "https://apollo-singapore.akamaized.net/v1/files/0x9ciuzhgt44-IN/image;s=360x0")!, sentByUser: true))
+        modelContext.insert(Item(timestamp: Date(), name: "Algorithms Book", price: 10, imageURL: URL(string: "https://m.media-amazon.com/images/I/61Pgdn8Ys-L._AC_UF1000,1000_QL80_.jpg")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "Data Structure Book", price: 17, imageURL: URL(string: "https://covers.openlibrary.org/b/id/12678211-L.jpg")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "Hermen Miller Aeron", price: 499, imageURL: URL(string: "https://marathonbe.com/wp-content/uploads/2023/03/Black-Aeron-1.jpg")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "IKEA DESK", price: 120, imageURL: URL(string: "https://media.karousell.com/media/photos/products/2022/8/11/ikea_norden_table_1660183841_1e0802c0_thumbnail")!, sentByUser: false))
+        modelContext.insert(Item(timestamp: Date(), name: "David Yurman Ring", price: 400, imageURL: URL(string: "https://i.ebayimg.com/images/g/D~4AAOSwHZVgx6m8/s-l1200.webp")!, sentByUser: false))
+    }
+    
+    
+    
     
 }
 

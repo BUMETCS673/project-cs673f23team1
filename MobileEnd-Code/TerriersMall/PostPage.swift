@@ -74,7 +74,7 @@ struct PostPage: View {
                     .padding()
                 
                 Button(action: {
-                    ContentView.displayItems.append(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, imageURL:URL(string: "https://images.manning.com/book/e/59c8b18-b8fd-4d32-939b-25dcbb4d525d/Rocca-ADS-HI.png")!))
+//                    ContentView.displayItems.append(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, imageURL:URL(string: "https://images.manning.com/book/e/59c8b18-b8fd-4d32-939b-25dcbb4d525d/Rocca-ADS-HI.png")!, sentByUser: false))
                     
                 }) {
                     Text("Post")
