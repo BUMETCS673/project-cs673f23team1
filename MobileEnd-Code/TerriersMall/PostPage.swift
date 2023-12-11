@@ -42,10 +42,10 @@ struct PostPage: View {
                             Text("Add Photos / Videos")
                                 .foregroundColor(.black)
                                 .frame(width: 200,height: 200)
-
+                                
                                 .overlay(content: {
-                                    Rectangle()
-                                        .strokeBorder()
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(lineWidth: 2)
                                         .foregroundColor(.gray)
                                         
                                 })
@@ -65,18 +65,18 @@ struct PostPage: View {
                 }
                 TextField("Item Name", text: $itemName)
                     .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(CuteTextFieldStyle())
                     
 
                 TextField("Price", text: $itemPrice)
                     .keyboardType(.decimalPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .textFieldStyle(CuteTextFieldStyle())
 
                 TextField("Description", text: $itemDescription)
-                    .keyboardType(.decimalPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .textFieldStyle(CuteTextFieldStyle())
+
                  
                 Button(action: {
                     modelContext.insert(Item(timestamp: Date(), name: itemName, price: Int(itemPrice) ?? 0, sentByUser: true, selectedImageData: selectedImageData))
@@ -98,6 +98,21 @@ struct PostPage: View {
         }
         
     }
+    
+    struct CuteTextFieldStyle: TextFieldStyle {
+        func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration
+                .padding(10)  // Adjust for thicker padding
+                .background(Color.white)  // Set your desired background color
+                .cornerRadius(20)  // More rounded corners
+                .shadow(color: .gray, radius: 2, x: 0, y: 2)  // Optional: add a subtle shadow
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.red, lineWidth: 2)  // Border color
+                )
+        }
+    }
+
 }
 
 #Preview {
