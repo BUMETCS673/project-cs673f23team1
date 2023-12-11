@@ -11,7 +11,6 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-    
     @Query private var allItems: [Item]  // Rename this to allItems
     @State private var searchText = ""  // State variable for search text
 
