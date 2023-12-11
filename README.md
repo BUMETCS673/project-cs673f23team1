@@ -6,13 +6,11 @@ This project aims to [describe the purpose of the project here]. It's a robust, 
 
 ## 🛠️ Tech Stack 🛠️
 
-🌐 **Backend**: Spring Boot, MyBatis, Dubbo
+🌐 **Backend**: Spring Boot, MyBatis, Dubbo, SwiftData
 
-🎨 **Frontend**: Vue.js
+🎨 **Frontend**: Vue.js, SwiftUI
 
 💽 **Databases**: MySQL, MongoDB
-
-🔧 O**Mobile App**: Swift (iOS)
 
 ## 🚀 Getting Started 🚀
 
