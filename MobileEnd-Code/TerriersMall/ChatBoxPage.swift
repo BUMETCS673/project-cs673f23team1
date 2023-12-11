@@ -22,8 +22,7 @@ struct ChatBoxPage: View {
     
     @State private var conversations: [Conversation] = [
         // Add your conversation data here
-        Conversation(imageName: "laptop", title: "Apple MacBook Pro...", subtitle: "The seller changed the price...", date: "Oct 14", isRead: false),
-        Conversation(imageName: "macmini", title: "LIKE NEW! - Mac Mini...", subtitle: "You: I can pick it up today 😊", date: "Oct 7", isRead: true),
+        Conversation(imageName: "macmini", title: "Hermen Miller Aeron", subtitle: "The seller changed the price...", date: "Dec 7", isRead: false),
         // ... more conversations
     ]
     
