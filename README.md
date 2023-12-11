@@ -6,19 +6,17 @@ This project aims to [describe the purpose of the project here]. It's a robust, 
 
 ## 🛠️ Tech Stack 🛠️
 
-🌐 Backend: Spring Boot
+🌐 **Backend**: Spring Boot, MyBatis, Dubbo, SwiftData
 
-🎨 Frontend: Vue
+🎨 **Frontend**: Vue.js, SwiftUI
 
-💽 Database: [Your Database]
-
-🔧 Other Tools: [Any other technologies or tools used]
+💽 **Databases**: MySQL, MongoDB
 
 ## 🚀 Getting Started 🚀
 
 ### 📋 Prerequisites 📋
 
-Java 11 or higherNode.js and npm[Any other prerequisites]
+Java 8
 
 ### 🛠 Installation 🛠
 
@@ -26,24 +24,9 @@ Java 11 or higherNode.js and npm[Any other prerequisites]
 
 1. Navigate to the backend directory
 
-   ```
-   bashCopy code
-   cd backend
-   ```
-
 2. Build the project using Maven
 
-   ```
-   bashCopy code
-   mvn clean install
-   ```
-
 3. Run the Spring Boot application
-
-   ```
-   bashCopy code
-   mvn spring-boot:run
-   ```
 
 #### 🎨 Frontend 🎨
 
@@ -68,9 +51,6 @@ Java 11 or higherNode.js and npm[Any other prerequisites]
    npm start
    ```
 
-## 🎯 Usage 🎯
-
-[Provide instructions on how to use the application]
 
 ## 👥 Contributing 👥
 
